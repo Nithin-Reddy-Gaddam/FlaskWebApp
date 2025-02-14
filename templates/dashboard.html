@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Dataset - Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2> Hello {{you}}, This is the data of passengers from titanic ship</h2>
+        <h5>In case you want to Log out:<a href="/logout">Logout</a></h5>
+        <h1 class="mt-5">Titanic Dataset Dashboard</h1>
+
+        <!-- Display summary statistics -->
+        <div class="row">
+            <div class="col-md-3">
+                <p><strong>Total Passengers:</strong> {{ total }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>Survived Passengers:</strong> {{ survived }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>Non-Survived Passengers:</strong> {{ non_survived }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>Average Fare:</strong> ${{ avg_fare | round(2) }}</p>
+            </div>
+        </div>
+
+        <!-- Table to display Titanic data -->
+        <h2 class="mt-5">Passenger Information</h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Survived</th>
+                    <th>Fare</th>
+                    <th>Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for passenger in passengers %}
+                <tr>
+                    <td>{{ passenger.name }}</td>
+                    <td>{{ passenger.age if passenger.age else 'N/A' }}</td>
+                    <td>{{ passenger.gender }}</td>
+                    <td>{{ 'Yes' if passenger.survived else 'No' }}</td>
+                    <td>${{ passenger.fare }}</td>
+                    <td>{{ passenger.class }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

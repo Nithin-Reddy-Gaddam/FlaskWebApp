@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+
+    <!-- Add Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{form.email.label}} {{ form.email }} <br>
+        {{form.password.label}} {{ form.password }} <br>
+        {{ form.submit }} <br>
+        <a href="/register">Don't have an account, Register here</a>
+    </form>
+
+
+</body>
+</html>

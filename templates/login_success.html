@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Success</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <h1>Hello, {{ username }}!</h1>
+    <br>
+    <a href='/dashboard'>Go to dashboard</a>
+    <br>
+    <a href='/logout'>Logout</a>
+</body>
+</html>
